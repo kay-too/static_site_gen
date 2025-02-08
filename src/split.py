@@ -53,3 +53,69 @@ def split_nodes_link(old_nodes):
             result.append(TextNode(current_text, TextType.NORMAL))
 
     return result
+
+def split_nodes_bold(old_nodes):
+    result = []
+    for node in old_nodes:
+        if node.text_type != TextType.NORMAL:
+            result.append(node)
+            continue
+
+        pieces = node.text.split("**")
+        # If no bold markers found, keep original node
+        if len(pieces) == 1:
+            result.append(node)
+            continue
+
+        for i, piece in enumerate(pieces):
+            if piece == "":
+                continue
+            # Even pieces are regular text, odd pieces are bold
+            text_type = TextType.BOLD if i % 2 else TextType.NORMAL
+            result.append(TextNode(piece, text_type))
+            
+    return result
+
+def split_nodes_italic(old_nodes):
+    result = []
+    for node in old_nodes:
+        if node.text_type != TextType.NORMAL:
+            result.append(node)
+            continue
+
+        pieces = node.text.split("*")
+        # If no bold markers found, keep original node
+        if len(pieces) == 1:
+            result.append(node)
+            continue
+
+        for i, piece in enumerate(pieces):
+            if piece == "":
+                continue
+            # Even pieces are regular text, odd pieces are bold
+            text_type = TextType.ITALIC if i % 2 else TextType.NORMAL
+            result.append(TextNode(piece, text_type))
+            
+    return result
+
+def split_nodes_code(old_nodes):
+    result = []
+    for node in old_nodes:
+        if node.text_type != TextType.NORMAL:
+            result.append(node)
+            continue
+
+        pieces = node.text.split("`")
+        # If no bold markers found, keep original node
+        if len(pieces) == 1:
+            result.append(node)
+            continue
+
+        for i, piece in enumerate(pieces):
+            if piece == "":
+                continue
+            # Even pieces are regular text, odd pieces are bold
+            text_type = TextType.CODE if i % 2 else TextType.NORMAL
+            result.append(TextNode(piece, text_type))
+            
+    return result
