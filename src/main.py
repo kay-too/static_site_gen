@@ -19,11 +19,7 @@ def main():
     copy_files_recursive(dir_path_static, dir_path_public)
 
     print("Generating content.")
-    generate_page(
-    f"{dir_path_content}/index.md",  # from_path
-    template_path,                    # template_path
-    f"{dir_path_public}/index.html"  # dest_path
-    )
+    generate_pages_recursive(dir_path_content, template_path, dir_path_public)
 
 if __name__ == "__main__":
     main()

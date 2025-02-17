@@ -21,7 +21,7 @@ def text_node_to_html_node(text_node):
         return LeafNode(tag="a", value=text_node.text, props={"href": text_node.url})
     
     elif text_node.text_type == text_node.text_type.IMAGES:
-        return LeafNode(tag="img", value="", props={"src": text_node.url, "alt": text_node.alt_text})
+        return LeafNode(tag="img", value="", props={"src": text_node.url, "alt": text_node.text})
     
     else:
         raise ValueError("Unknown TextType in TextNode!")
